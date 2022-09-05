@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
+    // app/Http/Kernel.php 'IsAdminMiddleware' route middleware
     $is_admin = auth()->user()->is_admin;
     if($is_admin === 1){
         return redirect('/admin/products');
@@ -33,7 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     Route::group(['prefix' => 'user'], function(){
-        Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index']);
+        Route::get('/products', [App\Http\Controllers\User\ProductController::class, 'index'])->name('userIndex');
     });
 });
 

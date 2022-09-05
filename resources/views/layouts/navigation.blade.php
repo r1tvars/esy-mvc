@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                    <x-nav-link :href="route((auth()->user()->is_admin === 1 ? 'index' : 'userIndex'))" :active="request()->routeIs('index')">
                         {{ __('Produkti') }}
                     </x-nav-link>
                     @if (auth()->user()->is_admin === 1)
